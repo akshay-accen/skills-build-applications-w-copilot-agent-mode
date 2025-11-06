@@ -31,9 +31,6 @@ router.register(r'leaderboard', LeaderboardViewSet)
 router.register(r'workouts', WorkoutViewSet)
 
 @api_view(['GET'])
-import os
-
-@api_view(['GET'])
 def api_root(request, format=None):
     codespace_name = os.environ.get('CODESPACE_NAME')
     base_url = f'https://{codespace_name}-8000.app.github.dev/api' if codespace_name else request.build_absolute_uri('/api')[:-4]
