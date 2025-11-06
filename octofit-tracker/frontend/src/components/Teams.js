@@ -15,13 +15,29 @@ const Teams = () => {
       .catch(err => console.error('Error fetching teams:', err));
   }, []);
   return (
-    <div>
-      <h2>Teams</h2>
-      <ul>
-        {teams.map((team, idx) => (
-          <li key={team.id || idx}>{team.name || JSON.stringify(team)}</li>
-        ))}
-      </ul>
+    <div className="card shadow mb-4">
+      <div className="card-header bg-info text-white">
+        <h2 className="mb-0">Teams</h2>
+      </div>
+      <div className="card-body">
+        <table className="table table-striped table-bordered">
+          <thead className="table-info">
+            <tr>
+              <th>Name</th>
+              <th>Members</th>
+            </tr>
+          </thead>
+          <tbody>
+            {teams.map((team, idx) => (
+              <tr key={team.id || idx}>
+                <td>{team.name || '-'}</td>
+                <td>{team.members ? team.members.length : '-'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <button className="btn btn-info mt-3">Create Team</button>
+      </div>
     </div>
   );
 };

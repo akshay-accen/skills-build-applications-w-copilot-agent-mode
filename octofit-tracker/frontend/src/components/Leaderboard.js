@@ -15,13 +15,28 @@ const Leaderboard = () => {
       .catch(err => console.error('Error fetching leaderboard:', err));
   }, []);
   return (
-    <div>
-      <h2>Leaderboard</h2>
-      <ul>
-        {leaders.map((leader, idx) => (
-          <li key={leader.id || idx}>{leader.name || JSON.stringify(leader)}</li>
-        ))}
-      </ul>
+    <div className="card shadow mb-4">
+      <div className="card-header bg-primary text-white">
+        <h2 className="mb-0">Leaderboard</h2>
+      </div>
+      <div className="card-body">
+        <table className="table table-striped table-bordered">
+          <thead className="table-primary">
+            <tr>
+              <th>Name</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaders.map((leader, idx) => (
+              <tr key={leader.id || idx}>
+                <td>{leader.name || '-'}</td>
+                <td>{leader.score || '-'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
